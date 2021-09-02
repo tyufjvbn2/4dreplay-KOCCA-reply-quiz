@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -6,7 +6,9 @@ const app = express();
 
 const router = express.Router();
 
-router.get("/", (_, res) => {
+app.use("/", router);
+
+router.get("/", (_, res: express.Response) => {
   res.send("Server is working well!");
 });
 

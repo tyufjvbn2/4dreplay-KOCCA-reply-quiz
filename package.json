@@ -23,6 +23,7 @@
     "express": "^4.17.1",
     "mongoose": "^6.0.4",
     "swagger-cli": "^4.0.4",
+    "tsc-watch": "^4.5.0",
     "typescript": "^4.4.2",
     "winston": "^3.3.3"
   }

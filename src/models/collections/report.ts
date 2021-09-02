@@ -1,38 +1,39 @@
 import mongoose from "mongoose";
 
+enum Check {
+  Unchecked = "Unchecked",
+  Checked = "Checked",
+  Done = "Done",
+}
+
 const reportSchema = new mongoose.Schema(
   {
     replyId: { type: String, required: true },
     userId: { type: String, required: true },
     reason: { type: Number, required: true },
     text: { type: String },
-    check: Boolean,
+    check: Check.Unchecked || Check.Checked || Check.Done,
+    createdAt: Date,
+    updatedAt: Date,
   },
   { versionKey: false }
 );
 
 /*
-replySchema.report.result의 경우 custom boolean 사용
-ex) replySchema.report.result: "open" | "unchecked" | "checked" | "block"
+reportSchema.check의 경우 enum 사용
 
-replySchema.report.contents = [
+Report 예시
+
     {
+        replyId: "4545645645644564",
         userId: "123abab384839b89",
         reason: 1,
-        reason: "닉네임에 욕설이 있습니다.",
-        check: "done"
+        text: "닉네임에 욕설이 있습니다.",
+        check: "Done",
+        createdAt: 2021.09.02.(목) 18:46:25,
+        updatedAt: 2021.09.02.(목) 18:47:01
     },
-    {
-        userId: "123123123123123bbb"
-        reason: 2,
-        reason: "댓글에 욕설이 너무 많습니다.",
-        check: "unchecked"
-        
-    }
-]
-
-replySchema.report.contents에 배열로 각 신고를 저장
-replySchema.report.contents[i].check : "unchecked" | "checked" | "done"
+ 
 
 */
 module.exports = mongoose.model("Report", reportSchema, "Report");

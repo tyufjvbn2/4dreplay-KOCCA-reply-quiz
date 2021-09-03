@@ -7,8 +7,10 @@ export const resolver = {
     console.log("data", result);
     return result;
   },
-  replyOne: () => {
-    // const one = Report.findAll();
+  replyOne: async (/*obj, arg, context, info*/) => {
+    // const one = await Replys.find({
+    //   arg.
+    // });
     // return one;
   },
 };

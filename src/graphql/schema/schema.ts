@@ -35,6 +35,7 @@ export const schema = buildSchema(`
         user_id: objectId
         reply_text: String
         reply_report_state: ReplyState
+        like_count: Int
         created_at: Date
         updated_at: Date
     }

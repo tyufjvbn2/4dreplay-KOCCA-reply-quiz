@@ -10,6 +10,7 @@ const replySchema = new mongoose.Schema(
       type: String,
       enum: ["OPEN", "UNCHECKED", "CHECKED", "BLOCK"],
     },
+    like_count: Number,
     created_at: Date,
     updated_at: Date,
   },

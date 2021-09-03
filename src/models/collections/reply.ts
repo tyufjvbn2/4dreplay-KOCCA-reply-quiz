@@ -16,7 +16,7 @@ const replySchema = new mongoose.Schema(
   { versionKey: false }
 );
 
-replySchema.index({ vod_id: 1, user_id: 1 });
+replySchema.index({ vod_id: 1, user_id: -1 });
 
 /*
 replySchema.report의 경우 enum 사용

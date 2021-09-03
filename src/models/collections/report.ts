@@ -34,7 +34,7 @@ const reportSchema = new mongoose.Schema(
   { versionKey: false }
 );
 
-reportSchema.index({ reply_id: 1, user_id: 1 });
+reportSchema.index({ reply_id: 1, user_id: -1 });
 
 /*
 reportSchema.check의 경우 enum 사용

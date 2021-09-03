@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 
 const replySchema = new mongoose.Schema(
   {
-    contents_id: { type: ObjectId, required: true },
+    vod_id: { type: ObjectId, required: true },
     user_id: { type: ObjectId, required: true },
     reply_text: String,
     reply_report_state: {

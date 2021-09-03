@@ -1,38 +1,71 @@
 import { buildSchema } from "graphql";
 
-// type Reply {
-//   vodId: String
-//     userId: String
-//     text: String
-//     report: {
-//       type: String,
-//       enum: ["OPEN", "UNCHECKED", "CHECKED", "BLOCK"],
-//     }
-//     createdAt: Date
-//     updatedAt: Date
-// }
+// const dateValue = (value: any) => {
+//   if (value instanceof Date) {
+//     return value;
+//   }
+// };
+
+// const DateType = new GraphQLScalarType({
+//   name: "Date",
+//   serialize: dateValue,
+//   parseValue: dateValue,
+//   parseLiteral(ast) {
+//     return dateValue(ast.value);
+//   },
+// });
 
 export const schema = buildSchema(`
 
-    enum State {
+    scalar ObjectId
+
+    scalar Date
+
+    enum ReplyState {
         OPEN
         UNCHECKED
         CHECKED
         BLOCK
     }
 
+    enum ReportReason {
+        BAD_NICKNAME
+        VIOLENT_TEXT
+        SEXUAL_TEXT
+        AD_TEXT
+        REPEATED
+        OUTLAW
+        ETC
+    }
+
+    enum ReportState {
+       UNCHECKED
+       CHECKED
+       DONE 
+    }
+
     type Reply {
-        vodId: String
-        userId: String
-        text: String
-        report: State
-        createdAt: String
-        updatedAt: String
+        vod_id: ObjectId
+        user_id: ObjectId
+        reply_text: String
+        reply_report_state: ReplyState
+        created_at: Date
+        updated_at: Date
+    }
+
+    type Report {
+        reply_id: ObjectId
+        user_id: ObjectId
+        report_reason : ReportReason
+        report_text: String
+        admin_check_state: ReportState
+        created_at: Date
+        updated_at: Date
     }
     
     type Query {
         replyAll: [Reply]
-        replyOne: String
-        reportAll: [String]
-        reportOne: String
+        replyOne: Reply
+        reportAll: [Report]
+        reportOne: Report
     }`);

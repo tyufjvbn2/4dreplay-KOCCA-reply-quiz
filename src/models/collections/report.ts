@@ -1,20 +1,23 @@
 import mongoose from "mongoose";
 
-enum Check {
-  Unchecked = "Unchecked",
-  Checked = "Checked",
-  Done = "Done",
-}
+// enum Check {
+//   Unchecked = "Unchecked",
+//   Checked = "Checked",
+//   Done = "Done",
+// }
 
 const reportSchema = new mongoose.Schema(
   {
-    replyId: { type: String, required: true },
-    userId: { type: String, required: true },
-    reason: { type: Number, required: true },
-    text: { type: String },
-    check: Check.Unchecked || Check.Checked || Check.Done,
-    createdAt: Date,
-    updatedAt: Date,
+    reply_id: { type: String, required: true },
+    user_id: { type: String, required: true },
+    report_reason: { type: Number, required: true },
+    report_text: String,
+    admin_check_state: {
+      type: String,
+      enum: ["UNCHECKED", "CHECKED", "DONE"],
+    },
+    created_at: Date,
+    updated_at: Date,
   },
   { versionKey: false }
 );

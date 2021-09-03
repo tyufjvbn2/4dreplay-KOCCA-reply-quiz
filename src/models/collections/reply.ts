@@ -1,12 +1,5 @@
 import mongoose from "mongoose";
 
-// enum Report {
-//   Open = "Open",
-//   Unchecked = "Unchecked",
-//   Checked = "Checked",
-//   Block = "Block",
-// }
-
 const replySchema = new mongoose.Schema(
   {
     vodId: { type: String, required: true },

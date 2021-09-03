@@ -9,8 +9,8 @@ import { ObjectId } from "mongodb";
 
 const reportSchema = new mongoose.Schema(
   {
-    reply_id: { type: ObjectId, required: true },
-    user_id: { type: ObjectId, required: true },
+    reply_id: { type: ObjectId, required: true, index: true },
+    user_id: { type: ObjectId, required: true, index: true },
     report_reason: {
       type: String,
       enum: [
@@ -33,6 +33,8 @@ const reportSchema = new mongoose.Schema(
   },
   { versionKey: false }
 );
+
+reportSchema.index({ reply_id: 1, user_id: 1 });
 
 /*
 reportSchema.check의 경우 enum 사용

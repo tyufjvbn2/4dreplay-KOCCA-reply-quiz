@@ -3,8 +3,8 @@ import { ObjectId } from "mongodb";
 
 const replySchema = new mongoose.Schema(
   {
-    vod_id: { type: ObjectId, required: true },
-    user_id: { type: ObjectId, required: true },
+    vod_id: { type: ObjectId, required: true, index: true },
+    user_id: { type: ObjectId, required: true, index: true },
     reply_text: String,
     reply_report_state: {
       type: String,
@@ -15,6 +15,8 @@ const replySchema = new mongoose.Schema(
   },
   { versionKey: false }
 );
+
+replySchema.index({ vod_id: 1, user_id: 1 });
 
 /*
 replySchema.report의 경우 enum 사용

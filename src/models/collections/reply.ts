@@ -1,16 +1,17 @@
 import mongoose from "mongoose";
+import { ObjectId } from "mongodb";
 
 const replySchema = new mongoose.Schema(
   {
-    vodId: { type: String, required: true },
-    userId: { type: String, required: true },
-    text: String,
-    report: {
+    contents_id: { type: ObjectId, required: true },
+    user_id: { type: ObjectId, required: true },
+    reply_text: String,
+    reply_report_state: {
       type: String,
       enum: ["OPEN", "UNCHECKED", "CHECKED", "BLOCK"],
     },
-    createdAt: Date,
-    updatedAt: Date,
+    created_at: Date,
+    updated_at: Date,
   },
   { versionKey: false }
 );

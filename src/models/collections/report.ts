@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { ObjectId } from "mongodb";
 
 // enum Check {
 //   Unchecked = "Unchecked",
@@ -8,9 +9,20 @@ import mongoose from "mongoose";
 
 const reportSchema = new mongoose.Schema(
   {
-    reply_id: { type: String, required: true },
-    user_id: { type: String, required: true },
-    report_reason: { type: Number, required: true },
+    reply_id: { type: ObjectId, required: true },
+    user_id: { type: ObjectId, required: true },
+    report_reason: {
+      type: String,
+      enum: [
+        "BAD_NICKNAME",
+        "VIOLENT_TEXT",
+        "SEXUAL_TEXT",
+        "AD_TEXT",
+        "REPEATED",
+        "OUTLAW",
+        "ETC",
+      ],
+    },
     report_text: String,
     admin_check_state: {
       type: String,

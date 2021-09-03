@@ -1,23 +1,8 @@
 import { buildSchema } from "graphql";
 
-// const dateValue = (value: any) => {
-//   if (value instanceof Date) {
-//     return value;
-//   }
-// };
-
-// const DateType = new GraphQLScalarType({
-//   name: "Date",
-//   serialize: dateValue,
-//   parseValue: dateValue,
-//   parseLiteral(ast) {
-//     return dateValue(ast.value);
-//   },
-// });
-
 export const schema = buildSchema(`
 
-    scalar ObjectId
+    scalar objectId
 
     scalar Date
 
@@ -45,9 +30,9 @@ export const schema = buildSchema(`
     }
 
     type Reply {
-        _id: ObjectId
-        vod_id: ObjectId
-        user_id: ObjectId
+        _id: objectId
+        vod_id: objectId
+        user_id: objectId
         reply_text: String
         reply_report_state: ReplyState
         created_at: Date
@@ -55,9 +40,9 @@ export const schema = buildSchema(`
     }
 
     type Report {
-        _id: ObjectId
-        reply_id: ObjectId
-        user_id: ObjectId
+        _id: objectId
+        reply_id: objectId
+        user_id: objectId
         report_reason : ReportReason
         report_text: String
         admin_check_state: ReportState

@@ -28,5 +28,8 @@
     "tsc-watch": "^4.5.0",
     "typescript": "^4.4.2",
     "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "graphql-playground-middleware-express": "^1.7.22"
   }
 }

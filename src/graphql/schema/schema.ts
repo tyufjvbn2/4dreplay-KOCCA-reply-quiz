@@ -45,6 +45,7 @@ export const schema = buildSchema(`
     }
 
     type Reply {
+        _id: ObjectId
         vod_id: ObjectId
         user_id: ObjectId
         reply_text: String
@@ -54,6 +55,7 @@ export const schema = buildSchema(`
     }
 
     type Report {
+        _id: ObjectId
         reply_id: ObjectId
         user_id: ObjectId
         report_reason : ReportReason

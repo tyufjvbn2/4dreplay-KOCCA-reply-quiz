@@ -1,6 +1,6 @@
 const Replys = require("../../models/collections/reply");
 
-export const root = {
+export const resolver = {
   test: () => "Query is working well!",
   replyAll: async () => {
     const result = await Replys.find();

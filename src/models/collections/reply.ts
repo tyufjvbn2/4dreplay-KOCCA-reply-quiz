@@ -1,18 +1,21 @@
 import mongoose from "mongoose";
 
-enum Report {
-  Open = "Open",
-  Unchecked = "Unchecked",
-  Checked = "Checked",
-  Block = "Block",
-}
+// enum Report {
+//   Open = "Open",
+//   Unchecked = "Unchecked",
+//   Checked = "Checked",
+//   Block = "Block",
+// }
 
 const replySchema = new mongoose.Schema(
   {
     vodId: { type: String, required: true },
     userId: { type: String, required: true },
     text: String,
-    report: Report.Open || Report.Unchecked || Report.Checked || Report.Block,
+    report: {
+      type: String,
+      enum: ["OPEN", "UNCHECKED", "CHECKED", "BLOCK"],
+    },
     createdAt: Date,
     updatedAt: Date,
   },

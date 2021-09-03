@@ -2,11 +2,11 @@ import * as dotenv from "dotenv";
 const mongoose = require("mongoose");
 dotenv.config();
 
-const config = {
+export const config = {
   db: {
-    production: process.env.MONGODB_HOST,
-    development: `${process.env.MONGODB_HOST}`,
-    test: `${process.env.MONGODB_HOST}`,
+    production: `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}`,
+    development: `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}_dev`,
+    test: `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DB}_test`,
   },
 };
 
@@ -14,19 +14,19 @@ module.exports = async () => {
   try {
     //Mongo DB connection check function
     const connect = () => {
-      if (config.db.production === "") {
+      if (process.env.MONGO_HOST !== "localhost") {
         mongoose.set("debug", true);
       }
 
       mongoose.connect(
-        config.db.test as string,
+        config.db.development as string,
         {
           keepAlive: true,
           autoIndex: true,
         },
         (err: Error) => {
           if (err) {
-            console.log("Mongo DB connection error on init : ", err);
+            console.log("Mongo DB connection error : ", err);
           }
         }
       );

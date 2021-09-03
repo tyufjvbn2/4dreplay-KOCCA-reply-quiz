@@ -18,6 +18,7 @@ try {
       schema: schema,
       rootValue: root,
       graphiql: true,
+      pretty: true,
     })
   );
 

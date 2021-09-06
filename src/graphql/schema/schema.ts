@@ -29,12 +29,6 @@ export const schema = buildSchema(`
        DONE 
     }
 
-    enum LikeState {
-        LIKE
-        DISLIKE
-        NONE
-    }
-
     type Reply {
         _id: objectId
         vod_id: objectId
@@ -56,14 +50,6 @@ export const schema = buildSchema(`
         created_at: Date
         updated_at: Date
     }
-
-    type Like {
-        _id: objectId
-        reply_id: objectId
-        user_id: objectId
-        like_state: LikeState
-        created_at: Date
-    }
     
     type Query {
         test: String
@@ -71,5 +57,4 @@ export const schema = buildSchema(`
         replyOne: Reply
         reportAll: [Report]
         reportOne: Report
-        likeAll: [Like]
     }`);

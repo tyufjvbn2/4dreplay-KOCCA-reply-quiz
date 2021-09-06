@@ -1,6 +1,5 @@
 const Reply = require("../../models/collections/reply");
 const Report = require("../../models/collections/report");
-const Like = require("../../models/collections/like");
 
 export const resolver = {
   test: () => {
@@ -21,7 +20,4 @@ export const resolver = {
     return await Report.find();
   },
   reportOne: async () => {},
-  likeAll: async () => {
-    return await Like.find();
-  },
 };

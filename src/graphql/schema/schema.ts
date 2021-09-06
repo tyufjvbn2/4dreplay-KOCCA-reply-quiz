@@ -29,13 +29,13 @@ export const schema = buildSchema(`
        DONE 
     }
 
+
     type Reply {
         _id: objectId
         vod_id: objectId
         user_id: objectId
         reply_text: String
         reply_report_state: ReplyState
-        like_count: Int
         created_at: Date
         updated_at: Date
     }
@@ -54,6 +54,7 @@ export const schema = buildSchema(`
     type Query {
         test: String
         replyAll: [Reply]
+        countTotalReply: Int
         replyOne: Reply
         reportAll: [Report]
         reportOne: Report

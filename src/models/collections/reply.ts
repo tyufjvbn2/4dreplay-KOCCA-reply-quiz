@@ -10,8 +10,6 @@ const replySchema = new mongoose.Schema(
       type: String,
       enum: ["OPEN", "UNCHECKED", "CHECKED", "BLOCK"],
     },
-    like_count: Number,
-    dislike_count: Number,
     created_at: Date,
     updated_at: Date,
   },
@@ -30,7 +28,6 @@ Reply 예시
         user_id : "ababab45ababab",
         reply_text : "영상 너무 재밌네요. 더 만들어 주세요",
         reply_report_state : "Open",
-        like_count : 22
         created_at : 2021.09.02.(목) 18:54:22,
         updated_at : 2021.09.02.(목) 18:55:00
     }

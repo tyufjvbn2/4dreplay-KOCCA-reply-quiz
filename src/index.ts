@@ -5,7 +5,11 @@ dotenv.config();
 const mongooseConfig = require("./config/config");
 
 import { schema } from "./graphql/schema/schema";
-import { root } from "./graphql/root/root";
+import { resolver } from "./graphql/resolver/resolver";
+
+//
+import expressPlayground from "graphql-playground-middleware-express";
+//
 
 try {
   mongooseConfig();
@@ -16,11 +20,12 @@ try {
     "/graphql",
     graphqlHTTP({
       schema: schema,
-      rootValue: root,
+      rootValue: resolver,
       graphiql: true,
       pretty: true,
     })
   );
+  app.get("/playground", expressPlayground({ endpoint: "/graphql" }));
 
   const port = process.env.SERVER_PORT !== "" ? process.env.SERVER_PORT : 3000;
 

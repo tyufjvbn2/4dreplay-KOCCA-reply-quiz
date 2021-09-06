@@ -3,8 +3,8 @@ import { ObjectId } from "mongodb";
 
 const replySchema = new mongoose.Schema(
   {
-    vod_id: { type: ObjectId, required: true },
-    user_id: { type: ObjectId, required: true },
+    vod_id: { type: ObjectId, required: true, index: true },
+    user_id: { type: ObjectId, required: true, index: true },
     reply_text: String,
     reply_report_state: {
       type: String,
@@ -16,20 +16,20 @@ const replySchema = new mongoose.Schema(
   { versionKey: false }
 );
 
+replySchema.index({ vod_id: 1, user_id: -1 });
+
 /*
-replySchema.report의 경우 enum 사용
-ex) replySchema.report: "Open" | "Unchecked" | "Checked" | "Block"
 
 Reply 예시
 
     {
         _id : "1234123412341234",
-        vodId : "56565656565656",
-        userId : "ababab45ababab",
-        text : "영상 너무 재밌네요. 더 만들어 주세요",
-        report : "Open",
-        createdAt : 2021.09.02.(목) 18:54:22,
-        updatedAt : 2021.09.02.(목) 18:55:00
+        vod_id : "56565656565656",
+        user_id : "ababab45ababab",
+        reply_text : "영상 너무 재밌네요. 더 만들어 주세요",
+        reply_report_state : "Open",
+        created_at : 2021.09.02.(목) 18:54:22,
+        updated_at : 2021.09.02.(목) 18:55:00
     }
 
 */

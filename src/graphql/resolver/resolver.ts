@@ -1,9 +1,13 @@
-const Replys = require("../../models/collections/reply");
+const Reply = require("../../models/collections/reply");
+const Report = require("../../models/collections/report");
+const Like = require("../../models/collections/like");
 
 export const resolver = {
-  test: () => "Query is working well!",
+  test: () => {
+    return "Query is working well!";
+  },
   replyAll: async () => {
-    const result = await Replys.find();
+    const result = await Reply.find();
     console.log("data", result);
     return result;
   },
@@ -12,5 +16,12 @@ export const resolver = {
     //   arg.
     // });
     // return one;
+  },
+  reportAll: async () => {
+    return await Report.find();
+  },
+  reportOne: async () => {},
+  likeAll: async () => {
+    return await Like.find();
   },
 };

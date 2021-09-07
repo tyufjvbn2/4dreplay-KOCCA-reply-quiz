@@ -55,6 +55,7 @@ export const schema = buildSchema(`
         test: String
         replyAll: [Reply]
         replyByVod(vod_id: String): [Reply]
+        replyByUserId(user_id: String): [Reply]
         replyOne: Reply
         reportAll: [Report]
         reportOne: Report

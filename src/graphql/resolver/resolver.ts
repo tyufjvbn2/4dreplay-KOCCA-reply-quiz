@@ -20,6 +20,11 @@ export const resolver = {
   //   console.log("how many", count);
   //   return count;
   // },
+  replyByUserId: async (user_id: string) => {
+    const byUserId = await Reply.find(user_id)
+    console.log("byUserId", byUserId)
+    return byUserId
+  },
   // replyValid: async () => {
   //   const valid = await Reply.aggregate([
 

@@ -37,7 +37,7 @@ Report 예시
     {
         reply_id: "4545645645644564",
         user_id: "123abab384839b89",
-        report_reason: 1,
+        report_reason: "BAD_NICKNAME",
         report_text: "닉네임에 욕설이 있습니다.",
         admin_check_state: "Done",
         created_at: 2021.09.02.(목) 18:46:25,

@@ -54,8 +54,15 @@ export const schema = buildSchema(`
     type Query {
         test: String
         replyAll: [Reply]
-        countTotalReply: Int
-        replyOne: Reply
+        replyByVod(vod_id: String): [Reply]
+        replyByUserId(user_id: String): [Reply]
+        replyOne(_id: objectId): Reply
         reportAll: [Report]
-        reportOne: Report
-    }`);
+        reportOne(_id: objectId): Report
+        reportByReply(reply_id: objectId) : [Report]
+    }
+    
+    type Mutation {
+      createReply(vod_id: objectId, user_id: objectId, reply_text: String) : Reply
+    }`
+);

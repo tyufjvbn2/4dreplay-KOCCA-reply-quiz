@@ -54,7 +54,7 @@ export const schema = buildSchema(`
     type Query {
         test: String
         replyAll: [Reply]
-        countTotalReply: Int
+        replyByVod(vod_id: String): [Reply]
         replyOne: Reply
         reportAll: [Report]
         reportOne: Report

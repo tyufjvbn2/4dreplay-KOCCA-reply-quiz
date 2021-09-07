@@ -46,8 +46,6 @@ export const resolver = {
     return await Report.find(reply_id)
   },
 
-
-
   createReply: async (obj: Params) => {
     console.log("params", obj)
     const { vod_id, user_id, reply_text } = obj

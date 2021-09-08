@@ -1,14 +1,15 @@
 import { buildSchema } from "graphql";
-import { replyMutation } from "./mutation/reply"
-import { replyQuery } from "./query/reply"
-import { replyType } from "./type/reply"
-import { quizQuery } from "./query/quiz";
+import { scalarTypes } from "./type/scalarType"
+import { replyTypes } from "./type/replyType"
+import { replyQuery } from "./query/replyQuery"
+import { quizQuery } from "./query/quizQuery";
+import { replyMutation } from "./mutation/replyMutation"
 
-// test: String
-// ${replySchema}
+
 export const schema = buildSchema(`
 
-    ${replyType}
+    ${scalarTypes}
+    ${replyTypes}
     
     type Query {
         ${replyQuery}

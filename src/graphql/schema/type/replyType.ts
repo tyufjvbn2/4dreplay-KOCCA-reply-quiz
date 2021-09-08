@@ -1,8 +1,6 @@
-export const replyType = `
+export const replyTypes = `
 
-    scalar objectId
 
-    scalar Date
 
     enum ReplyState {
         OPEN

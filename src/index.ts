@@ -4,7 +4,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 const mongooseConfig = require("./config/config");
 
-import { schema } from "./graphql/schema/schema";
+import { schema } from "./graphql/schema/index";
 import { resolver } from "./graphql/resolver/resolver";
 
 //

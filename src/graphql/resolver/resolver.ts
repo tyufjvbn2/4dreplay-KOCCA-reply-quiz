@@ -43,6 +43,10 @@ export const resolver = {
   // Query Method //
   //--------------//
 
+  test2: () => {
+    return "This come from test2!!"
+  },
+
   test: () => {
     return "Query is working well!";
   },
@@ -141,7 +145,6 @@ export const resolver = {
     console.log("new", newReport)
     return newReport
   },
-
 
   checkReport: async (arg: Params) => {
     const { _id, admin_check_state } = arg

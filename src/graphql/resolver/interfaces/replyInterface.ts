@@ -33,5 +33,7 @@ export interface ReplyParams {
   reply_report_state?: ReplyState,
   admin_check_state?: ReportState,
   report_reason?: ReportReason,
-  report_text?: string
+  report_text?: string,
+  first?: number,
+  offset?: number
 }

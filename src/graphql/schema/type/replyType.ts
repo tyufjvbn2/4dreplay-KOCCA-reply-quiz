@@ -1,10 +1,4 @@
-import { buildSchema } from "graphql";
-
-export const schema = buildSchema(`
-
-    scalar objectId
-
-    scalar Date
+export const replyTypes = `
 
     enum ReplyState {
         OPEN
@@ -26,7 +20,7 @@ export const schema = buildSchema(`
     enum ReportState {
        UNCHECKED
        CHECKED
-       DONE 
+       DONE
     }
 
 
@@ -50,19 +44,5 @@ export const schema = buildSchema(`
         created_at: Date
         updated_at: Date
     }
-    
-    type Query {
-        test: String
-        replyAll: [Reply]
-        replyByVod(vod_id: String): [Reply]
-        replyByUserId(user_id: String): [Reply]
-        replyOne(_id: objectId): Reply
-        reportAll: [Report]
-        reportOne(_id: objectId): Report
-        reportByReply(reply_id: objectId) : [Report]
-    }
-    
-    type Mutation {
-      createReply(vod_id: objectId, user_id: objectId, reply_text: String) : Reply
-    }`
-);
+
+`

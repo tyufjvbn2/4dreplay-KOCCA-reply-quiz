@@ -17,7 +17,7 @@ const reportSchema = new mongoose.Schema(
         "ETC",
       ],
     },
-    report_text: String,
+    report_text: { type: String, required: true },
     admin_check_state: {
       type: String,
       enum: ["UNCHECKED", "CHECKED", "DONE"],

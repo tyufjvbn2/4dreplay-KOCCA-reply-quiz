@@ -1,7 +1,5 @@
 export const replyTypes = `
 
-
-
     enum ReplyState {
         OPEN
         UNCHECKED

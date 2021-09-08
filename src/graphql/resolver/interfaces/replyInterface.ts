@@ -1,20 +1,20 @@
 import mongoose from "mongoose"
 
 
-export const enum ReplyState {
+enum ReplyState {
   OPEN = "OPEN",
   UNCHECKED = "UNCHECKED",
   CHECKED = "CHECKED",
   BLOCK = "BLOCK"
 }
 
-export const enum ReportState {
+enum ReportState {
   UNCHECKED = "UNCHECKED",
   CHECKED = "CHECKED",
   DONE = "DONE"
 }
 
-export const enum ReportReason {
+enum ReportReason {
   BAD_NICKNAME = "BAD_NICKNAME",
   VIOLENT_TEXT = "VIOLENT_TEXT",
   SEXUAL_TEXT = '"SEXUAL_TEXT',
@@ -24,7 +24,7 @@ export const enum ReportReason {
   ETC = "ETC"
 }
 
-export interface Params {
+export interface ReplyParams {
   _id?: mongoose.Types.ObjectId,
   vod_id?: mongoose.Types.ObjectId,
   user_id?: mongoose.Types.ObjectId,

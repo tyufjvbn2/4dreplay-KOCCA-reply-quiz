@@ -1,6 +1,6 @@
 export const quizQuery = `
   test2: String
-  quizList: [Quiz]
+  quizList(content_id: objectId, first: Int, offset: Int): [Quiz]
   quizByVod(vod_id: objectId): [Quiz]
   quizOne: Quiz
 `;

@@ -3,6 +3,7 @@ import { ObjectId } from "mongodb";
 
 const quizSchema = new mongoose.Schema(
 	{
+		content_id: { type: ObjectId, required: true },
 		vod_id: { type: ObjectId, required: true },
 		event_state: {
 			type: String,

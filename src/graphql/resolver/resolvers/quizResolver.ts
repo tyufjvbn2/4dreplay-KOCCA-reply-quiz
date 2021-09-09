@@ -12,8 +12,16 @@ export const quizResolver = {
 		return "This come from test2!!";
 	},
 
-	quizList: async () => {
-		return await Quiz.find();
+	quizList: async (arg: QuizParams) => {
+		const { first, offset } = arg;
+		return await Quiz.find(
+			arg.content_id && {
+				content_id: arg.content_id,
+			}
+		)
+			.sort({ field: "asc", _id: 1 })
+			.skip(first)
+			.limit(offset);
 	},
 
 	quizByVod: async (vod_id: mongoose.Types.ObjectId) => {
@@ -68,5 +76,11 @@ export const quizResolver = {
 		);
 		console.log("update", updatedQuiz);
 		return updatedQuiz;
+	},
+
+	deleteQuiz: async (_id: mongoose.Types.ObjectId) => {
+		const target = await Quiz.findOneAndDelete(_id);
+		console.log("target", target);
+		return target;
 	},
 };

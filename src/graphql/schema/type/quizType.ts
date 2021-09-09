@@ -8,6 +8,7 @@ export const quizTypes = `
 
     type Quiz {
         _id: objectId
+        content_id: objectId
         vod_id: objectId
         event_state: EventState
         event_title: String

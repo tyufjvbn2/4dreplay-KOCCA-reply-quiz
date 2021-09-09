@@ -5,6 +5,7 @@ import { quizTypes } from "./type/quizType";
 import { replyQuery } from "./query/replyQuery";
 import { quizQuery } from "./query/quizQuery";
 import { replyMutation } from "./mutation/replyMutation";
+import { quizMutation } from "./mutation/quizMutation";
 
 export const schema = buildSchema(`
 
@@ -19,6 +20,7 @@ export const schema = buildSchema(`
 
     type Mutation {
         ${replyMutation}
+        ${quizMutation}
     }
     
 `);

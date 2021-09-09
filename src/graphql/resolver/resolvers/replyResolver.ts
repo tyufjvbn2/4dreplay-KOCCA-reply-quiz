@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const Reply = require("../../../models/collections/reply");
 const Report = require("../../../models/collections/report");
 
-import { ReplyParams } from "../interfaces/replyInterface";
+import { ReplyParams } from "../../resolver/interfaces/replyInterface";
 
 export const replyResolver = {
 	//--------------//

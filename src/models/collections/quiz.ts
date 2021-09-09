@@ -2,17 +2,21 @@ import mongoose from "mongoose";
 import { ObjectId } from "mongodb";
 
 const quizSchema = new mongoose.Schema(
-  {
-      state: {
-          type: String,
-          enum: ["ONPROGRESS", "PARTICIPATED", "TERMINATED"],
-          required: true
-      },
-    vod_id: { type: ObjectId, required: true, index: true },
-    created_at: Date,
-    updated_at: Date,
-  },
-  { versionKey: false }
+	{
+		content_id: { type: ObjectId, required: true },
+		vod_id: { type: ObjectId, required: true },
+		event_state: {
+			type: String,
+			enum: ["PREPARING", "ONPROGRESS", "TERMINATED"],
+			required: true,
+		},
+		event_title: String,
+		event_text: String,
+		select_options: Array,
+		created_at: Date,
+		updated_at: Date,
+	},
+	{ versionKey: false }
 );
 
 module.exports = mongoose.model("Quiz", quizSchema, "Quiz");

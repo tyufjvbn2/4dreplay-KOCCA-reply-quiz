@@ -8,10 +8,12 @@ import { noticeTypes } from "./type/noticeType";
 import { replyQuery } from "./query/replyQuery";
 import { quizQuery } from "./query/quizQuery";
 import { noticeQuery } from "./query/noticeQuery";
+import { quizUserQuery } from "./query/quizUserQuery";
 
 import { replyMutation } from "./mutation/replyMutation";
 import { quizMutation } from "./mutation/quizMutation";
 import { noticeMutation } from "./mutation/noticeMutation";
+import { quizUserMutation } from "./mutation/quizUserMutation";
 
 export const schema = buildSchema(`
 
@@ -24,12 +26,14 @@ export const schema = buildSchema(`
         ${replyQuery}
         ${quizQuery}
         ${noticeQuery}
+        ${quizUserQuery}
     }
 
     type Mutation {
         ${replyMutation}
         ${quizMutation}
         ${noticeMutation}
+        ${quizUserMutation}
     }
     
 `);

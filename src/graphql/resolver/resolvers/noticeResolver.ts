@@ -37,10 +37,24 @@ export const noticeResolver = {
 		const { first, offset, search_text, classification } = arg;
 		console.log("how many", await Notice.count({}));
 		if (classification === "ALL") {
-			return await Notice.find({ notice_title: { $regex: search_text } })
+			const result = await Notice.aggregate([
+				{ $match: { notice_title: { $regex: search_text } } },
+			])
 				.sort({ field: "desc", _id: -1 })
 				.skip(first)
 				.limit(offset);
+			const target = await Notice.aggregate([
+				{ $match: { notice_title: { $regex: search_text } } },
+			]);
+			console.log("how long?", target.length);
+			return {
+				data: result,
+				length: target.length,
+			};
+			// return await Notice.find({ notice_title: { $regex: search_text } })
+			// 	.sort({ field: "desc", _id: -1 })
+			// 	.skip(first)
+			// 	.limit(offset);
 			// .aggregate([
 			// 	{
 			// 		$addFields: {

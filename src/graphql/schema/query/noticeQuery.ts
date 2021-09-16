@@ -3,5 +3,5 @@ export const noticeQuery = `
   noticeList(first:Int, offset:Int, classfication: Classification): [Notice]  
   noticeOne(_id: objectId): Notice
   noticeByClass(first:Int, offset:Int, classification: Classification): [Notice]
-  noticeBySearch(first:Int, offset:Int, search_text: String, classification: Classification): [Notice]
+  noticeBySearch(first:Int, offset:Int, search_text: String, classification: Classification): ListResult
 `;

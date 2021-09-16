@@ -6,7 +6,7 @@ export const noticeTypes = `
         GUIDE
         ALL
     }
-
+    
     type Notice {
         _id: objectId
         classification: Classification
@@ -15,5 +15,11 @@ export const noticeTypes = `
         created_at: Date
         updated_at: Date
     }
+
+    type ListResult {
+        data: [Notice]
+        length: Int
+    }
+
 
 `;

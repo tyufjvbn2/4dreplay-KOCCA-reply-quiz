@@ -35,17 +35,24 @@ export const noticeResolver = {
 
 	noticeBySearch: async (arg: noticeParams) => {
 		const { first, offset, search_text, classification } = arg;
+		console.log("how many", await Notice.count({}));
 		if (classification === "ALL") {
-			return await Notice.$where(
-				Notice.notice_title.indexOf(search_text) === 1
-			).exec((err: Error, doc: object) => {
-				if (err) {
-					console.error(err);
-				}
-				console.log("what is doc?", doc);
-			});
+			return await Notice.find({ notice_title: { $regex: search_text } })
+				.sort({ field: "desc", _id: -1 })
+				.skip(first)
+				.limit(offset);
+			// .aggregate([
+			// 	{
+			// 		$addFields: {
+			// 			totalNotice: await Notice.count({}),
+			// 		},
+			// 	},
+			// ]);
 		} else {
-			return await Notice.find({ classification: classification })
+			return await Notice.find({
+				classification: classification,
+				notice_title: { $regex: search_text },
+			})
 				.sort({ field: "desc", _id: -1 })
 				.skip(first)
 				.limit(offset);

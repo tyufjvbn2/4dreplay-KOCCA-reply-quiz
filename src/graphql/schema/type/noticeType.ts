@@ -4,6 +4,7 @@ export const noticeTypes = `
         NOTICE
         EVENT
         GUIDE
+        ALL
     }
 
     type Notice {

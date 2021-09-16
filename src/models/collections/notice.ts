@@ -5,7 +5,7 @@ const noticeSchema = new mongoose.Schema(
 	{
 		classification: {
 			type: String,
-			enum: ["NOTICE", "EVENT", "GUIDE"],
+			enum: ["NOTICE", "EVENT", "GUIDE", "ALL"],
 			required: true,
 		},
 		notice_title: String,

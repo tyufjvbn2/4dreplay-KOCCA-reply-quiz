@@ -4,6 +4,7 @@ enum Classification {
 	NOTICE = "NOTICE",
 	EVENT = "EVENT",
 	GUIDE = "GUIDE",
+	ALL = "ALL",
 }
 
 export interface noticeParams {
@@ -13,4 +14,5 @@ export interface noticeParams {
 	notice_text?: string;
 	first?: number;
 	offset?: number;
+	search_text?: string;
 }

@@ -43,14 +43,20 @@ export const noticeResolver = {
 				.sort({ field: "desc", _id: -1 })
 				.skip(first)
 				.limit(offset);
-			const target = await Notice.aggregate([
-				{ $match: { notice_title: { $regex: search_text } } },
-			]);
-			console.log("how long?", target.length);
+			// const target = await Notice.aggregate([
+			// 	{ $match: { notice_title: { $regex: search_text } } },
+			// ]);
+			const totalTargetNotice = await Notice.count({
+				notice_title: { $regex: search_text },
+			});
+			console.log("how long?", totalTargetNotice);
 			return {
 				data: result,
-				length: target.length,
+				length: totalTargetNotice,
 			};
+
+			/* still have problem!! */
+
 			// return await Notice.find({ notice_title: { $regex: search_text } })
 			// 	.sort({ field: "desc", _id: -1 })
 			// 	.skip(first)
@@ -63,17 +69,63 @@ export const noticeResolver = {
 			// 	},
 			// ]);
 		} else {
-			return await Notice.find({
+			const result = await Notice.find({
 				classification: classification,
 				notice_title: { $regex: search_text },
 			})
 				.sort({ field: "desc", _id: -1 })
 				.skip(first)
 				.limit(offset);
+			const totalTargetNotice = await Notice.count({
+				classification: classification,
+				notice_title: { $regex: search_text },
+			});
+			return {
+				data: result,
+				length: totalTargetNotice,
+			};
 		}
 	},
 
 	//-----------------//
 	// Mutation Method //
 	//-----------------//
+
+	createNotice: async (arg: noticeParams) => {
+		console.log("check arg", arg);
+		const { classification, notice_title, notice_text } = arg;
+		const newNotice = await Notice.create({
+			classification: classification,
+			notice_title: notice_title,
+			notice_text: notice_text,
+			created_at: new Date(),
+			updated_at: new Date(),
+		});
+		return newNotice;
+	},
+
+	deleteNotice: async (_id: mongoose.Types.ObjectId) => {
+		return await Notice.findOneAndDelete(_id);
+	},
+
+	updateNotice: async (arg: noticeParams) => {
+		const { _id } = arg;
+		const original = await Notice.findById(_id);
+		return await Notice.findOneAndUpdate(
+			{ _id: _id },
+			{
+				classification: arg.classification
+					? arg.classification
+					: original.classification,
+				notice_title: arg.notice_title
+					? arg.notice_title
+					: original.notice_title,
+				notice_text: arg.notice_text
+					? arg.notice_text
+					: original.notice_text,
+				updatede_at: new Date(),
+			},
+			{ returnOriginal: false }
+		);
+	},
 };

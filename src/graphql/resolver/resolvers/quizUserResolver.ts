@@ -1,5 +1,5 @@
 // import mongoose from "mongoose";
-// const Notice = require("../../../models/collections/notice");
+const quizUser = require("../../../models/collections/quiz_user");
 
 // import { noticeParams } from "../interfaces/noticeInterface";
 
@@ -12,6 +12,12 @@ export const quizUserResolver = {
 
 	test4: () => {
 		return "This will use for quiz user resolver";
+	},
+
+	quizUserList: async () => {
+		const target = await quizUser.distinct("user_id");
+		console.log("target", target);
+		return target;
 	},
 
 	//-----------------//

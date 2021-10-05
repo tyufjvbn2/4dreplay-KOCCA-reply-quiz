@@ -1,4 +1,4 @@
 export const quizUserQuery = `
   test4: String
-  quizUserList: [objectId]
+  quizUserList(quiz_id: objectId): [objectId]
 `;

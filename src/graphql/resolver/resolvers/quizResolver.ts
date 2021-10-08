@@ -29,7 +29,28 @@ export const quizResolver = {
 	},
 
 	quizOne: async (_id: mongoose.Types.ObjectId) => {
-		return await Quiz.findBy;
+		return await Quiz.findById(_id);
+	},
+
+	totalQuizTest: async (arg: QuizParams) => {
+		// return await Quiz.aggregate([
+		// 	{ $match: { event_state: "ONPROGRESS" } },
+
+		// 	arg.content_id && {
+		// 		content_id: arg.content_id,
+		// 	},
+		// 	arg.vod_id && {
+		// 		vod_id: arg.vod_id,
+		// 	},
+		// ]);
+		return await Quiz.find(
+			arg.content_id && {
+				content_id: arg.content_id,
+			},
+			arg.vod_id && {
+				vod_id: arg.vod_id,
+			}
+		);
 	},
 
 	//-----------------//

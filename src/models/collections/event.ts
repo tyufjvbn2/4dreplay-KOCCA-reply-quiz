@@ -16,7 +16,7 @@ const eventSchema = new mongoose.Schema(
 		event_end: Date,
 		event_winning_publication: Date,
 		event_policy_text: String,
-		event_child: Array, //퀴즈 objectId 저장
+		event_child: Array,
 		created_at: Date,
 		updated_at: Date,
 	},

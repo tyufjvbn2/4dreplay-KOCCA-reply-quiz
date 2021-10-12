@@ -14,6 +14,10 @@ export interface QuizParams {
 	select_options?: [string];
 	event_title?: string;
 	event_text?: string;
+	event_start?: Date;
+	event_end?: Date;
+	event_winning_publication?: Date;
+	event_policy_text: string;
 	first?: number;
 	offset?: number;
 }

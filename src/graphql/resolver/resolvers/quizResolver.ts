@@ -58,13 +58,28 @@ export const quizResolver = {
 	//-----------------//
 
 	createQuiz: async (arg: QuizParams) => {
-		const { vod_id, event_title, event_text, select_options } = arg;
+		const {
+			content_id,
+			vod_id,
+			event_title,
+			event_text,
+			select_options,
+			event_start,
+			event_end,
+			event_winning_publication,
+			event_policy_text,
+		} = arg;
 		const newQuiz = await Quiz.create({
+			content_id: content_id,
 			vod_id: vod_id,
 			event_state: "PREPARING",
 			event_title: event_title,
 			event_text: event_text,
 			select_options: select_options,
+			event_start: event_start,
+			event_end: event_end,
+			event_winning_publication: event_winning_publication,
+			event_policy_text: event_policy_text,
 			created_at: new Date(),
 			updated_at: new Date(),
 		});
@@ -91,6 +106,16 @@ export const quizResolver = {
 				select_options: arg.select_options
 					? arg.select_options
 					: original.select_options,
+				event_start: arg.event_start
+					? arg.event_start
+					: original.event_start,
+				event_end: arg.event_end ? arg.event_end : original.event_end,
+				event_winning_publication: arg.event_winning_publication
+					? arg.event_winning_publication
+					: original.event_winning_publication,
+				event_policy_text: arg.event_policy_text
+					? arg.event_policy_text
+					: original.event_policy_text,
 				updated_at: new Date(),
 			},
 			{ returnOriginal: false }

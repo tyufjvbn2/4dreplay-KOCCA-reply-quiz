@@ -61,25 +61,20 @@ export const quizResolver = {
 		const {
 			content_id,
 			vod_id,
-			event_title,
-			event_text,
+			event_id,
+			quiz_title,
+			quiz_text,
 			select_options,
-			event_start,
-			event_end,
-			event_winning_publication,
-			event_policy_text,
+			quiz_answer,
 		} = arg;
 		const newQuiz = await Quiz.create({
 			content_id: content_id,
 			vod_id: vod_id,
-			event_state: "PREPARING",
-			event_title: event_title,
-			event_text: event_text,
+			event_id: event_id,
+			quiz_title: quiz_title,
+			quiz_text: quiz_text,
 			select_options: select_options,
-			event_start: event_start,
-			event_end: event_end,
-			event_winning_publication: event_winning_publication,
-			event_policy_text: event_policy_text,
+			quiz_answer: quiz_answer,
 			created_at: new Date(),
 			updated_at: new Date(),
 		});
@@ -94,28 +89,16 @@ export const quizResolver = {
 		const updatedQuiz = await Quiz.findOneAndUpdate(
 			{ _id: _id },
 			{
-				event_state: arg.event_state
-					? arg.event_state
-					: original.event_state,
-				event_title: arg.event_title
-					? arg.event_title
-					: original.event_title,
-				event_text: arg.event_text
-					? arg.event_text
-					: original.event_text,
+				quiz_title: arg.quiz_title
+					? arg.quiz_title
+					: original.quiz_title,
+				quiz_text: arg.quiz_text ? arg.quiz_text : original.quiz_text,
 				select_options: arg.select_options
 					? arg.select_options
 					: original.select_options,
-				event_start: arg.event_start
-					? arg.event_start
-					: original.event_start,
-				event_end: arg.event_end ? arg.event_end : original.event_end,
-				event_winning_publication: arg.event_winning_publication
-					? arg.event_winning_publication
-					: original.event_winning_publication,
-				event_policy_text: arg.event_policy_text
-					? arg.event_policy_text
-					: original.event_policy_text,
+				quiz_answer: arg.quiz_answer
+					? arg.quiz_answer
+					: original.quiz_answer,
 				updated_at: new Date(),
 			},
 			{ returnOriginal: false }

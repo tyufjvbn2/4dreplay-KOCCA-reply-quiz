@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 const Quiz = require("../../../models/collections/quiz");
+const Event = require("../../../models/collections/event");
 
 import { QuizParams } from "../interfaces/quizInterface";
 
@@ -78,7 +79,14 @@ export const quizResolver = {
 			created_at: new Date(),
 			updated_at: new Date(),
 		});
+
 		console.log("created", newQuiz);
+		const addingQuiz = await Event.updateOne(
+			{ _id: event_id },
+			{ $push: { event_child: newQuiz._id } }
+		);
+		console.log("update to event", addingQuiz);
+
 		return newQuiz;
 	},
 

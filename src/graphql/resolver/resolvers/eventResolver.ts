@@ -42,7 +42,7 @@ export const eventResolver = {
 		const newEvent = await Event.create({
 			content_id: content_id,
 			vod_id: vod_id,
-			select_options: "PREPARING",
+			event_state: "PREPARING",
 			event_title: event_title,
 			event_text: event_text,
 			event_start: event_start,

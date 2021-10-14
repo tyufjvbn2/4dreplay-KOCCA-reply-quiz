@@ -1,5 +1,10 @@
 export const quizTypes = `
 
+    type OptionResult {
+        _id: Int
+        count: Int
+    }
+
 
     type Quiz {
         _id: objectId

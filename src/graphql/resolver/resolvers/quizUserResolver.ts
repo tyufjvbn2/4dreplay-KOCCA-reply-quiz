@@ -28,7 +28,7 @@ export const quizUserResolver = {
 	selectQuizOption: async (arg: QuizUserParams) => {
 		const { quiz_id, user_id, option } = arg;
 		const newData = await QuizUser.findOneAndUpdate(
-			{ user_id: user_id },
+			{ user_id: user_id, quiz_id: quiz_id },
 			{
 				quiz_id: quiz_id,
 				user_id: user_id,
@@ -38,7 +38,23 @@ export const quizUserResolver = {
 		);
 		console.log("user select option", newData);
 
-		return;
+		const totalResult = await QuizUser.aggregate([
+			// { $match: { quiz_id: quiz_id } },
+			{
+				$bucket: {
+					groupBy: "$option",
+					boundaries: [0, 1, 2, 3],
+					default: "others",
+					output: {
+						count: { $sum: 1 },
+					},
+				},
+			},
+		]);
+
+		console.log("group count well?", totalResult);
+
+		return totalResult;
 	},
 
 	addQuizParticipantData: async (arg: QuizUserParams) => {

@@ -29,6 +29,10 @@ export const quizResolver = {
 		return await Quiz.findById(vod_id);
 	},
 
+	quizByEvent: async (event_id: mongoose.Types.ObjectId) => {
+		return await Quiz.findById(event_id);
+	},
+
 	quizOne: async (_id: mongoose.Types.ObjectId) => {
 		return await Quiz.findById(_id);
 	},

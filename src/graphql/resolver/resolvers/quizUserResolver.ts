@@ -1,6 +1,7 @@
-// import mongoose from "mongoose";
+import mongoose from "mongoose";
 const QuizUser = require("../../../models/collections/quiz_user");
 const QuizUserData = require("../../../models/collections/quiz_user_data");
+const ObjectId = mongoose.Types.ObjectId;
 
 import { QuizUserParams } from "../interfaces/quizUserInterface";
 
@@ -38,18 +39,53 @@ export const quizUserResolver = {
 		);
 		console.log("user select option", newData);
 
+		const totalCount = await QuizUser.count({
+			quiz_id: new ObjectId(quiz_id),
+		});
+
+		console.log("total?", totalCount);
+
 		const totalResult = await QuizUser.aggregate([
-			// { $match: { quiz_id: quiz_id } },
+			{ $match: { quiz_id: new ObjectId(quiz_id) } },
+			{ $group: { _id: "$option", count: { $sum: 1 } } },
 			{
-				$bucket: {
-					groupBy: "$option",
-					boundaries: [0, 1, 2, 3],
-					default: "others",
-					output: {
-						count: { $sum: 1 },
+				$project: {
+					count: 1,
+					percentage: {
+						$concat: [
+							{
+								$substr: [
+									{
+										$multiply: [
+											{
+												$divide: [
+													"$count",
+													{ $literal: totalCount },
+												],
+											},
+											100,
+										],
+									},
+									0,
+									2,
+								],
+							},
+							"",
+							"%",
+						],
 					},
 				},
 			},
+			// {
+			// 	$bucket: {
+			// 		groupBy: "$option",
+			// 		boundaries: [0, 1, 2, 3],
+			// 		default: "others",
+			// 		output: {
+			// 			count: { $sum: 1 },
+			// 		},
+			// 	},
+			// },
 		]);
 
 		console.log("group count well?", totalResult);

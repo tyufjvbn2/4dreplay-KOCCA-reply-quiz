@@ -37,6 +37,7 @@ export const quizResolver = {
 		return await Quiz.findById(_id);
 	},
 
+	/*
 	totalQuizTest: async (arg: QuizParams) => {
 		// return await Quiz.aggregate([
 		// 	{ $match: { event_state: "ONPROGRESS" } },
@@ -57,6 +58,7 @@ export const quizResolver = {
 			}
 		);
 	},
+	*/
 
 	//-----------------//
 	// Mutation Method //

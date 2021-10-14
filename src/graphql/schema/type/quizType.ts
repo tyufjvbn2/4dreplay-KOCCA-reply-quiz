@@ -3,6 +3,7 @@ export const quizTypes = `
     type OptionResult {
         _id: Int
         count: Int
+        percentage: String
     }
 
 

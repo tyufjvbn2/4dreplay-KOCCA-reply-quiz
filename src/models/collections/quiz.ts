@@ -5,14 +5,11 @@ const quizSchema = new mongoose.Schema(
 	{
 		content_id: { type: ObjectId, required: true },
 		vod_id: { type: ObjectId, required: true },
-		event_state: {
-			type: String,
-			enum: ["PREPARING", "ONPROGRESS", "TERMINATED"],
-			required: true,
-		},
-		event_title: String,
-		event_text: String,
+		event_id: { type: ObjectId, required: true },
+		quiz_title: String,
+		quiz_text: String,
 		select_options: Array,
+		quiz_answer: Number,
 		created_at: Date,
 		updated_at: Date,
 	},

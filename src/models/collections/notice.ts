@@ -3,12 +3,13 @@ import mongoose from "mongoose";
 
 const noticeSchema = new mongoose.Schema(
 	{
-		classifacation: {
+		classification: {
 			type: String,
-			enum: ["NOTICE", "EVENT", "GUIDE"],
+			enum: ["NOTICE", "EVENT", "GUIDE", "ALL"],
 			required: true,
 		},
-		text: String,
+		notice_title: String,
+		notice_text: String,
 		created_at: Date,
 		updated_at: Date,
 	},

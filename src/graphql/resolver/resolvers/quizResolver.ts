@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 const Quiz = require("../../../models/collections/quiz");
+const Event = require("../../../models/collections/event");
 
 import { QuizParams } from "../interfaces/quizInterface";
 
@@ -28,26 +29,70 @@ export const quizResolver = {
 		return await Quiz.findById(vod_id);
 	},
 
-	quizOne: async (_id: mongoose.Types.ObjectId) => {
-		return await Quiz.findBy;
+	quizByEvent: async (event_id: mongoose.Types.ObjectId) => {
+		return await Quiz.findById(event_id);
 	},
+
+	quizOne: async (_id: mongoose.Types.ObjectId) => {
+		return await Quiz.findById(_id);
+	},
+
+	/*
+	totalQuizTest: async (arg: QuizParams) => {
+		// return await Quiz.aggregate([
+		// 	{ $match: { event_state: "ONPROGRESS" } },
+
+		// 	arg.content_id && {
+		// 		content_id: arg.content_id,
+		// 	},
+		// 	arg.vod_id && {
+		// 		vod_id: arg.vod_id,
+		// 	},
+		// ]);
+		return await Quiz.find(
+			arg.content_id && {
+				content_id: arg.content_id,
+			},
+			arg.vod_id && {
+				vod_id: arg.vod_id,
+			}
+		);
+	},
+	*/
 
 	//-----------------//
 	// Mutation Method //
 	//-----------------//
 
 	createQuiz: async (arg: QuizParams) => {
-		const { vod_id, event_title, event_text, select_options } = arg;
+		const {
+			content_id,
+			vod_id,
+			event_id,
+			quiz_title,
+			quiz_text,
+			select_options,
+			quiz_answer,
+		} = arg;
 		const newQuiz = await Quiz.create({
+			content_id: content_id,
 			vod_id: vod_id,
-			event_state: "PREPARING",
-			event_title: event_title,
-			event_text: event_text,
+			event_id: event_id,
+			quiz_title: quiz_title,
+			quiz_text: quiz_text,
 			select_options: select_options,
+			quiz_answer: quiz_answer,
 			created_at: new Date(),
 			updated_at: new Date(),
 		});
+
 		console.log("created", newQuiz);
+		const addingQuiz = await Event.updateOne(
+			{ _id: event_id },
+			{ $push: { event_child: newQuiz._id } }
+		);
+		console.log("update to event", addingQuiz);
+
 		return newQuiz;
 	},
 
@@ -58,18 +103,16 @@ export const quizResolver = {
 		const updatedQuiz = await Quiz.findOneAndUpdate(
 			{ _id: _id },
 			{
-				event_state: arg.event_state
-					? arg.event_state
-					: original.event_state,
-				event_title: arg.event_title
-					? arg.event_title
-					: original.event_title,
-				event_text: arg.event_text
-					? arg.event_text
-					: original.event_text,
+				quiz_title: arg.quiz_title
+					? arg.quiz_title
+					: original.quiz_title,
+				quiz_text: arg.quiz_text ? arg.quiz_text : original.quiz_text,
 				select_options: arg.select_options
 					? arg.select_options
 					: original.select_options,
+				quiz_answer: arg.quiz_answer
+					? arg.quiz_answer
+					: original.quiz_answer,
 				updated_at: new Date(),
 			},
 			{ returnOriginal: false }

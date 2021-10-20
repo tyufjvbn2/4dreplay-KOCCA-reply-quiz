@@ -1,19 +1,20 @@
 export const quizTypes = `
 
-    enum EventState {
-        PREPARING
-        ONPROGRESS
-        TERMINATED
+    type OptionResult {
+        _id: Int
+        count: Int
+        percentage: String
     }
+
 
     type Quiz {
         _id: objectId
         content_id: objectId
         vod_id: objectId
-        event_state: EventState
-        event_title: String
-        event_text: String
+        quiz_title: String
+        quiz_text: String
         select_options: [String]
+        quiz_answer: Int
         created_at: Date
         updated_at: Date
     }
